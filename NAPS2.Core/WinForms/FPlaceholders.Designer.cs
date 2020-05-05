@@ -60,6 +60,8 @@
             this.button12 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.gboxPlaceholders = new System.Windows.Forms.GroupBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.button14 = new System.Windows.Forms.Button();
             this.gboxPlaceholders.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -247,6 +249,8 @@
             // 
             // gboxPlaceholders
             // 
+            this.gboxPlaceholders.Controls.Add(this.label14);
+            this.gboxPlaceholders.Controls.Add(this.button14);
             this.gboxPlaceholders.Controls.Add(this.button13);
             this.gboxPlaceholders.Controls.Add(this.button1);
             this.gboxPlaceholders.Controls.Add(this.button12);
@@ -274,6 +278,18 @@
             resources.ApplyResources(this.gboxPlaceholders, "gboxPlaceholders");
             this.gboxPlaceholders.Name = "gboxPlaceholders";
             this.gboxPlaceholders.TabStop = false;
+            // 
+            // label14
+            // 
+            resources.ApplyResources(this.label14, "label14");
+            this.label14.Name = "label14";
+            // 
+            // button14
+            // 
+            resources.ApplyResources(this.button14, "button14");
+            this.button14.Name = "button14";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.phButton_Click);
             // 
             // FPlaceholders
             // 
@@ -330,5 +346,7 @@
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.GroupBox gboxPlaceholders;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button button14;
     }
 }

@@ -17,6 +17,8 @@ namespace NAPS2.ImportExport.Images
 
         public bool SkipSavePrompt { get; set; }
 
+        public bool RewriteExisting { get; set; }
+
         public int JpegQuality { get; set; }
 
         public TiffCompression TiffCompression { get; set; }

@@ -52,6 +52,7 @@ namespace NAPS2.WinForms
             this.cbSinglePageTiff = new System.Windows.Forms.CheckBox();
             this.groupJpeg = new System.Windows.Forms.GroupBox();
             this.groupTiff = new System.Windows.Forms.GroupBox();
+            this.cbRewriteExistingFiles = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.tbJpegQuality)).BeginInit();
             this.groupJpeg.SuspendLayout();
             this.groupTiff.SuspendLayout();
@@ -170,10 +171,17 @@ namespace NAPS2.WinForms
             this.groupTiff.Name = "groupTiff";
             this.groupTiff.TabStop = false;
             // 
+            // cbRewriteExistingFiles
+            // 
+            resources.ApplyResources(this.cbRewriteExistingFiles, "cbRewriteExistingFiles");
+            this.cbRewriteExistingFiles.Name = "cbRewriteExistingFiles";
+            this.cbRewriteExistingFiles.UseVisualStyleBackColor = true;
+            // 
             // FImageSettings
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cbRewriteExistingFiles);
             this.Controls.Add(this.groupTiff);
             this.Controls.Add(this.groupJpeg);
             this.Controls.Add(this.cbSkipSavePrompt);
@@ -218,5 +226,6 @@ namespace NAPS2.WinForms
         private System.Windows.Forms.CheckBox cbSinglePageTiff;
         private System.Windows.Forms.GroupBox groupJpeg;
         private System.Windows.Forms.GroupBox groupTiff;
+        private System.Windows.Forms.CheckBox cbRewriteExistingFiles;
     }
 }

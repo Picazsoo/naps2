@@ -40,6 +40,7 @@ namespace NAPS2.WinForms
                 FileNamePlaceholders.NUMBER_3_DIGITS,
                 FileNamePlaceholders.NUMBER_2_DIGITS,
                 FileNamePlaceholders.NUMBER_1_DIGIT,
+                FileNamePlaceholders.NUMBER_CUSTOM_DIGITS,
                 $"{FileNamePlaceholders.YEAR_4_DIGITS}-{FileNamePlaceholders.MONTH_2_DIGITS}-{FileNamePlaceholders.DAY_2_DIGITS}",
                 $"{FileNamePlaceholders.HOUR_24_CLOCK}_{FileNamePlaceholders.MINUTE_2_DIGITS}_{FileNamePlaceholders.SECOND_2_DIGITS}",
             };

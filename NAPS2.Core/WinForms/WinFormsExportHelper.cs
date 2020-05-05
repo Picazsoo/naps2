@@ -113,7 +113,7 @@ namespace NAPS2.WinForms
 
                 var op = operationFactory.Create<SaveImagesOperation>();
                 var changeToken = changeTracker.State;
-                if (op.Start(savePath, DateTime.Now, images))
+                if (op.Start(savePath, DateTime.Now, images, false, imageSettings.RewriteExisting))
                 {
                     operationProgress.ShowProgress(op);
                 }

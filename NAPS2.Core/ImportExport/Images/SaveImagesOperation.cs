@@ -47,7 +47,7 @@ namespace NAPS2.ImportExport.Images
         /// <param name="dateTime"></param>
         /// <param name="images">The collection of images to save.</param>
         /// <param name="batch"></param>
-        public bool Start(string fileName, DateTime dateTime, List<ScannedImage> images, bool batch = false)
+        public bool Start(string fileName, DateTime dateTime, List<ScannedImage> images, bool batch = false, bool overwriteExisting = false)
         {
             Status = new OperationStatus
             {
@@ -93,7 +93,7 @@ namespace NAPS2.ImportExport.Images
                         Status.CurrentProgress = i;
                         InvokeStatusChanged();
 
-                        if (snapshots.Count == 1 && File.Exists(subFileName))
+                        if (snapshots.Count == 1 && File.Exists(subFileName) && !overwriteExisting)
                         {
                             var dialogResult = overwritePrompt.ConfirmOverwrite(subFileName);
                             if (dialogResult == DialogResult.No)
@@ -114,7 +114,7 @@ namespace NAPS2.ImportExport.Images
                         }
                         else
                         {
-                            var fileNameN = fileNamePlaceholders.SubstitutePlaceholders(fileName, dateTime, true, i,
+                            var fileNameN = fileNamePlaceholders.SubstitutePlaceholders(fileName, dateTime, !overwriteExisting, i,
                                 digits);
                             Status.StatusText = string.Format(MiscResources.SavingFormat, Path.GetFileName(fileNameN));
                             InvokeStatusChanged();

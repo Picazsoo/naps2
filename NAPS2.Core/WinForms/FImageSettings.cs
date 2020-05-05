@@ -44,6 +44,7 @@ namespace NAPS2.WinForms
         {
             txtDefaultFilePath.Text = imageSettings.DefaultFileName;
             cbSkipSavePrompt.Checked = imageSettings.SkipSavePrompt;
+            cbRewriteExistingFiles.Checked = imageSettings.RewriteExisting;
             txtJpegQuality.Text = imageSettings.JpegQuality.ToString(CultureInfo.InvariantCulture);
             cmbTiffCompr.SelectedIndex = (int) imageSettings.TiffCompression;
             cbSinglePageTiff.Checked = imageSettings.SinglePageTiff;
@@ -65,6 +66,7 @@ namespace NAPS2.WinForms
             {
                 DefaultFileName = txtDefaultFilePath.Text,
                 SkipSavePrompt = cbSkipSavePrompt.Checked,
+                RewriteExisting = cbRewriteExistingFiles.Checked,
                 JpegQuality = tbJpegQuality.Value,
                 TiffCompression = (TiffCompression)cmbTiffCompr.SelectedIndex,
                 SinglePageTiff = cbSinglePageTiff.Checked

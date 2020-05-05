@@ -19,6 +19,7 @@ namespace NAPS2.ImportExport
         public const string NUMBER_3_DIGITS = "$(nnn)";
         public const string NUMBER_2_DIGITS = "$(nn)";
         public const string NUMBER_1_DIGIT = "$(n)";
+        public const string NUMBER_CUSTOM_DIGITS = "$(001)";
 
         private static readonly Dictionary<string, Func<DateTime, string>> Placeholders = new Dictionary<string, Func<DateTime, string>>
         {
@@ -32,6 +33,8 @@ namespace NAPS2.ImportExport
         };
 
         private static readonly Regex NumberPlaceholderPattern = new Regex(@"\$\(n+\)");
+        private static readonly Regex CustomDigitsPlaceholderPattern = new Regex(@"\$\(\d+\)");
+        private static readonly Regex ExtractCustomDigits = new Regex(@"\d+");
 
         public string SubstitutePlaceholders(string fileNameWithPath, DateTime dateTime, bool incrementIfExists = true, int numberSkip = 0, int autoNumberDigits = 0)
         {
@@ -44,11 +47,18 @@ namespace NAPS2.ImportExport
             // Most placeholders don't need a special case
             result = Placeholders.Aggregate(result, (current, ph) => current.Replace(ph.Key, ph.Value(dateTime)));
             // One does, however
-            var match = NumberPlaceholderPattern.Match(result);
-            if (match.Success)
+            Match numberMatch = NumberPlaceholderPattern.Match(result);
+            Match customDigitsMatch = CustomDigitsPlaceholderPattern.Match(result);
+            if (numberMatch.Success)
             {
                 result = NumberPlaceholderPattern.Replace(result, "");
-                result = SubstituteNumber(result, match.Index, match.Length - 3, numberSkip, true);
+                result = SubstituteNumber(result, numberMatch.Index, numberMatch.Length - 3, numberSkip, true);
+            }
+            else if (customDigitsMatch.Success)
+            {
+                int startNumber = Int32.Parse(ExtractCustomDigits.Match(customDigitsMatch.ToString()).ToString());
+                result = CustomDigitsPlaceholderPattern.Replace(result, "");
+                result = SubstituteNumber(result, customDigitsMatch.Index, customDigitsMatch.Length - 3, startNumber + numberSkip -1, incrementIfExists);
             }
             else if (autoNumberDigits > 0)
             {
@@ -57,6 +67,7 @@ namespace NAPS2.ImportExport
             }
             return result;
         }
+
 
         private string SubstituteNumber(string path, int insertionIndex, int minDigits, int skip, bool incrementIfExists)
         {
